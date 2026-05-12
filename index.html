@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Star Circle｜AI講座</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EA;
+    --cream-dark: #EDE7D9;
+    --black: #1A1410;
+    --black-mid: #2E2820;
+    --red: #9B2020;
+    --red-light: #C23030;
+    --gray: #6B6358;
+    --gray-light: #A09890;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Noto Serif JP', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    border-bottom: 1px solid var(--black);
+    position: relative;
+  }
+
+  .hero-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(64px, 14vw, 130px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .hero-title-red {
+    color: var(--red);
+    font-style: italic;
+  }
+
+  .hero-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--red);
+    margin: 40px auto;
+  }
+
+  .hero-copy {
+    max-width: 480px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 2.4;
+    color: var(--black-mid);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gray-light), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 24px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 9px;
+    letter-spacing: 0.6em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .section-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.5;
+    color: var(--black);
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+
+  .section-h2 em {
+    color: var(--red);
+    font-style: italic;
+  }
+
+  .section-body {
+    font-size: 14px;
+    line-height: 2.6;
+    color: var(--black-mid);
+    font-weight: 200;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--black);
+    margin: 0;
+  }
+
+  .divider-thin {
+    border: none;
+    border-top: 1px solid var(--cream-dark);
+    margin: 0;
+  }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    background: var(--black);
+    padding: 100px 24px;
+    text-align: center;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(22px, 4vw, 36px);
+    line-height: 1.8;
+    color: var(--cream);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    letter-spacing: 0.04em;
+  }
+
+  .quote-text em {
+    color: #C23030;
+  }
+
+  .quote-attr {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+  }
+
+  /* ── CAN DO ── */
+  .cando-section {
+    background: var(--cream-dark);
+    padding: 100px 24px;
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+  }
+
+  .cando-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .cando-list {
+    margin-top: 48px;
+    list-style: none;
+    counter-reset: cando;
+  }
+
+  .cando-item {
+    counter-increment: cando;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(26,20,16,0.12);
+    align-items: start;
+    transition: background 0.2s ease;
+  }
+
+  .cando-item:last-child {
+    border-bottom: none;
+  }
+
+  .cando-item::before {
+    content: counter(cando, decimal-leading-zero);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    padding-top: 3px;
+  }
+
+  .cando-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--black);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PRICE ── */
+  .price-section {
+    padding: 100px 24px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--black);
+    border: 1px solid var(--black);
+    margin-top: 48px;
+  }
+
+  .price-card {
+    background: var(--cream);
+    padding: 48px 40px;
+    transition: background 0.3s ease;
+  }
+
+  .price-card:hover {
+    background: var(--cream-dark);
+  }
+
+  .price-card-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .price-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 26px;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .price-card-time {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+  }
+
+  .price-card-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 52px;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-card-tax {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    margin-bottom: 28px;
+  }
+
+  .price-card-note {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    line-height: 2;
+    border-top: 1px solid var(--cream-dark);
+    padding-top: 24px;
+  }
+
+  /* ── STEPS ── */
+  .steps-section {
+    background: var(--cream-dark);
+    padding: 100px 24px;
+    border-top: 1px solid var(--black);
+  }
+
+  .steps-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .step-list {
+    margin-top: 56px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 32px;
+    margin-bottom: 0;
+    border-top: 1px solid var(--black);
+    padding: 40px 0;
+  }
+
+  .step:last-child {
+    border-bottom: 1px solid var(--black);
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 56px;
+    color: rgba(26,20,16,0.12);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--black);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .step-title span {
+    color: var(--red);
+  }
+
+  .step-body {
+    font-size: 13px;
+    line-height: 2.4;
+    color: var(--black-mid);
+    font-weight: 200;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 120px 24px;
+    text-align: center;
+    border-top: 1px solid var(--black);
+  }
+
+  .cta-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.6;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .cta-body {
+    font-size: 13px;
+    line-height: 2.6;
+    color: var(--gray);
+    max-width: 400px;
+    margin: 0 auto 56px;
+    font-weight: 200;
+    letter-spacing: 0.06em;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 20px 60px;
+    background: var(--red);
+    color: var(--cream);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--red-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 24px;
+    border-top: 1px solid var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    color: var(--black);
+  }
+
+  .footer-info {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .price-cards { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 1fr; gap: 12px; }
+    .step-num { font-size: 36px; }
+    footer { justify-content: center; text-align: center; }
+  }
+
+  /* ── FADE IN ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-tag">Blue Star Circle presents</p>
+  <h1 class="hero-title">
+    AI<br>
+    <span class="hero-title-red">Lecture</span>
+  </h1>
+  <div class="hero-rule"></div>
+  <p class="hero-copy">
+    あなたの人生を、最強にする。<br>
+    AIを味方につけた先に何があるか、<br>
+    知っていますか？
+  </p>
+  <p class="hero-scroll">Scroll</p>
+</div>
+
+<!-- QUOTE 1 -->
+<div class="quote-section">
+  <p class="quote-text">
+    AIにお願いすることと、<br>
+    <em>自分にしかできないこと</em>を<br>知ったとき、<br>
+    この人生は最強になる。
+  </p>
+  <p class="quote-attr">Blue Star Circle</p>
+</div>
+
+<!-- CAN DO -->
+<div class="cando-section">
+  <div class="cando-inner">
+    <p class="section-label">What You Can Do</p>
+    <h2 class="section-h2">AIで<em>10秒</em>でできること、<br>知っていますか？</h2>
+    <p class="section-body">「難しそう」「怖い」「自分には無理」——<br>そう思っていた人ほど、知った後に驚く。</p>
+
+    <ul class="cando-list">
+      <li class="cando-item reveal"><p class="cando-text">ホロスコープ・数秘・六星占術など複数の占いを統合して、今の自分の方向性を読み解く（一度やり方を知ったら、もう占いに課金せず生きられる）</p></li>
+      <li class="cando-item reveal"><p class="cando-text">思い出の写真を好きな画家の作風に近づける</p></li>
+      <li class="cando-item reveal"><p class="cando-text">インスタのキャプション・リール台本を10秒で作る</p></li>
+      <li class="cando-item reveal"><p class="cando-text">自分のお店のチラシ・LP・ポスターをゼロから作る</p></li>
+      <li class="cando-item reveal"><p class="cando-text">「最近モヤモヤしてる」と話すだけで気持ちを整理して言語化してもらう</p></li>
+      <li class="cando-item reveal"><p class="cando-text">スクショを見せて「ここ直して」と言うだけでデザインを修正</p></li>
+      <li class="cando-item reveal"><p class="cando-text">難しい契約書・保険・税金のことをわかりやすく説明してもらう</p></li>
+      <li class="cando-item reveal"><p class="cando-text">自己紹介文を何パターンも作ってもらって一番しっくりくるのを選ぶ</p></li>
+      <li class="cando-item reveal"><p class="cando-text">頭の中のビジネスアイデアを整理して、事業計画の骨格にしてもらう</p></li>
+      <li class="cando-item reveal"><p class="cando-text">お礼・断り・お詫めメールを丁寧に、10秒で仕上げる</p></li>
+    </ul>
+
+    <p style="margin-top: 40px; font-size: 12px; line-height: 2.2; color: var(--gray); letter-spacing: 0.08em; font-weight: 200;">
+      ※ ここに挙げたのはほんの一部。受講時にはすぐ実践できる「AIでできること20選」をまとめたリストをご用意しています。
+    </p>
+  </div>
+</div>
+
+<!-- MESSAGE -->
+<section>
+  <p class="section-label">Our Philosophy</p>
+  <h2 class="section-h2">「1人で全部できる」が、<br>目標じゃない。</h2>
+  <p class="section-body">
+    最高の秘書を手に入れること。<br><br>
+    自分の知りたいこと、思ったこと、脳の中にあること——<br>
+    それを全部代弁してくれる存在を持った上で、<br>
+    家族と、仕事と、未来と、フラットに向き合えるようになること。<br><br>
+    孤独に強くなるんじゃなくて、<br>
+    土台が整った上で楽しく生きていく。<br>
+    それがこの講座の、本当のゴールです。
+  </p>
+</section>
+
+<hr class="divider">
+
+<!-- PRICE -->
+<div class="price-section">
+  <p class="section-label">Lecture Plan</p>
+  <h2 class="section-h2">まず、<em>1回</em>。<br>それだけで別世界になる。</h2>
+  <p class="section-body">
+    私が1年かけて掴んできたことを、あなたに渡したい。<br>
+    完全マンツーマン。<br>
+    あなたのペースで、あなたに合わせて。
+  </p>
+
+  <div class="price-cards">
+    <div class="price-card reveal">
+      <p class="price-card-label">Start Course</p>
+      <p class="price-card-name">スタートコース</p>
+      <p class="price-card-time">マンツーマン・90分</p>
+      <p class="price-card-amount">¥20,000</p>
+      <p class="price-card-tax">税込</p>
+      <p class="price-card-note">
+        AIに触ったことがない方でも大丈夫。<br>
+        まず体験してみたい方に。
+      </p>
+    </div>
+    <div class="price-card reveal">
+      <p class="price-card-label">Intensive Course</p>
+      <p class="price-card-name">じっくりコース</p>
+      <p class="price-card-time">マンツーマン・3時間</p>
+      <p class="price-card-amount">¥30,000</p>
+      <p class="price-card-tax">税込</p>
+      <p class="price-card-note">
+        しっかり身につけたい方に。<br>
+        1〜3回で、全く別世界になります。
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- STEPS -->
+<div class="steps-section">
+  <div class="steps-inner">
+    <p class="section-label">The Journey</p>
+    <h2 class="section-h2">先生と生徒から、<br><em>仲間</em>へ。</h2>
+
+    <div class="step-list">
+      <div class="step reveal">
+        <p class="step-num">1</p>
+        <div>
+          <p class="step-title">AI Lecture</p>
+          <p class="step-body">
+            マンツーマンで、あなたのペースで学ぶ。<br>
+            PCが苦手でも、AIに触れたことがなくても、<br>
+            1〜3回で「使える」が現実になります。
+          </p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <p class="step-num">2</p>
+        <div>
+          <p class="step-title">Blue Star Circle <span>月額 ¥10,000</span></p>
+          <p class="step-body">
+            月1回のマンツーマンセッション、<br>
+            困ったときすぐ連絡できる環境、<br>
+            大事なポイントは動画で何度でも繰り返し確認できる、<br>
+            同じ志を持つ仲間とのつながり。<br>
+            自分の足で立って生きていくための場所。
+          </p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <p class="step-num">3</p>
+        <div>
+          <p class="step-title">Win-Win で、一緒に作り上げる</p>
+          <p class="step-body">
+            AIを使いこなせるようになった仲間が集まって、<br>
+            仕事を作り、人生を作る。<br>
+            Blue Star は「大きな仲間の塊」でありたい。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE 2 -->
+<div class="quote-section">
+  <p class="quote-text">
+    誰にも頼らず、自分で生きていける人になる。<br>
+    でも、<em>1人じゃない。</em>
+  </p>
+  <p class="quote-attr">Blue Star Circle</p>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="cta-h2">何が知りたいですか？<br>詳しくは、Blue Star Circle で。</h2>
+  <p class="cta-body">
+    まず1回、体験してみてください。<br>
+    その後どうするかは、あなたが決めればいい。<br>
+    押し売りは、しません。
+  </p>
+  <a href="https://www.instagram.com/bluestar.nagoya" class="cta-btn" target="_blank">
+    Instagram で問い合わせる
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Blue Star Circle</p>
+  <p class="footer-info">Nagoya, Mizuho-ku ｜ @bluestar.nagoya</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
